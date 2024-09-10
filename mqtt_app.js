@@ -15,7 +15,7 @@ function startConnect()
   
 
 
-    client = new Paho.MQTT.Client(host,Number(port),clientID);
+    client = new Paho.MQTT.Client("wss://test.mosquitto.org:8081/",clientID);
 
     client.onConnectionLost = onConnectionLost;
     client.onMessageArrived = onMessageArrived;
@@ -33,6 +33,8 @@ function startConnect()
 function onConnect(){
     log("Connected to " + host + ":" + port)
     topic = "10092024/4110/general_status"
+    topic = "#"
+
     log("Subscribing to " + topic)
     client.subscribe(topic);
 }
