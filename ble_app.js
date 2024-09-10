@@ -28,10 +28,10 @@ async function bleConnect() {
       {
         log('Requesting Bluetooth Device...');
         device = await navigator.bluetooth.requestDevice({
-                    filters: [{"services": ["EF680100-1234-1234-1234-000000000000".toLowerCase()]}]});
+                    filters: [{services: [0xff05]}],
+                    optionalServices: ["EF680100-1234-1234-1234-000000000000".toLowerCase()]})
+
       }
-
-
       log('Connecting to GATT Server...');
       const server = await device.gatt.connect();
   
@@ -46,7 +46,8 @@ async function bleConnect() {
       log('> Notifications started');
       myCharacteristic.addEventListener('characteristicvaluechanged',
           handleNotifications);
-    } catch(error) {
+    } catch (error) {
+      console.log(error)
       log(error);
     }
   }
