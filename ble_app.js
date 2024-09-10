@@ -5,11 +5,42 @@
     var line = Array.prototype.slice.call(arguments).map(function(argument) {
       return typeof argument === 'string' ? argument : JSON.stringify(argument);
     }).join(' ');
-    document.querySelector('#log').textContent += line + '\n';
+    document.querySelector('#log').textContent = line + '\n' + document.querySelector('#log').textContent ;
   }
+
+var toggleCarState;
+
+
+function toggleCar()
+{
+    console.log(toggleCarState)
+    if (toggleCarState)
+    {
+      document.querySelector('#toggleOn').style.opacity = 1.0
+      document.querySelector('#toggleOff').style.opacity = 0.0
+
+    }
+    else
+    {
+      document.querySelector('#toggleOn').style.opacity = 0.0
+      document.querySelector('#toggleOff').style.opacity = 1.0
+
+    }
+
+    toggleCarState = toggleCarState++ ^ 1;
+    toggleCarTimer = setTimeout(toggleCar, 1000);
+
+}
+
+var device;
+var server;
+var myCharacteristic;
+var toggleCarTimer
 
 async function bleConnect() {
 
+    toggleCarState = 0;
+    toggleCarTimer = setTimeout(toggleCar, 1000);
   
     try {
       devices = await navigator.bluetooth.getDevices();
@@ -33,10 +64,10 @@ async function bleConnect() {
 
       }
       log('Connecting to GATT Server...');
-      const server = await device.gatt.connect();
+      server = await device.gatt.connect();
   
       log('Getting Service...');
-      const service = await server.getPrimaryService("EF680100-1234-1234-1234-000000000000".toLowerCase());
+      service = await server.getPrimaryService("EF680100-1234-1234-1234-000000000000".toLowerCase());
   
       log('Getting Characteristic...');
       myCharacteristic = await service.getCharacteristic("EF680101-1234-1234-1234-000000000000".toLowerCase());
@@ -54,6 +85,12 @@ async function bleConnect() {
   
   async function bleDisconnect() {
 
+    clearTimeout(toggleCarTimer);
+    document.querySelector('#toggleOn').src = "car-grey-closed.png"
+    document.querySelector('#toggleOff').src = "car-off-closed.png"
+    document.querySelector('#toggleOn').style.opacity = 1.0
+    document.querySelector('#toggleOff').style.opacity = 0.0
+    
     if (myCharacteristic) {
       try {
         await myCharacteristic.stopNotifications();
@@ -72,13 +109,25 @@ async function bleConnect() {
   }
   
   function handleNotifications(event) {
-    let value = event.target.value;
-    let a = [];
-    // Convert raw data bytes to hex values just for the sake of showing something.
-    // In the "real" world, you'd use data.getUint8, data.getUint16 or even
-    // TextDecoder to process raw data bytes.
-    for (let i = 0; i < value.byteLength; i++) {
-      a.push('0x' + ('00' + value.getUint8(i).toString(16)).slice(-2));
+    
+    let value = event.target.value.getInt8(0);
+
+    if (value > -30)
+    {
+      document.querySelector('#toggleOn').src = "car-green-open.png"
+      document.querySelector('#toggleOff').src = "car-grey-closed.png"
+
     }
-    log('> ' + a.join(' '));
+    else if (value > -50)
+    {
+      document.querySelector('#toggleOn').src = "car-orange-closed.png"
+      document.querySelector('#toggleOff').src = "car-grey-closed.png"
+    }
+    else
+    {
+      document.querySelector('#toggleOn').src = "car-grey-closed.png"
+      document.querySelector('#toggleOff').src = "car-off-closed.png"
+    }
+    var car_toggle_on = "car-grey-closed.png";
+var car_toggle_off = "car-off-closed.png";;
   }

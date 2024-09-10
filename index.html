@@ -36,9 +36,9 @@
             margin-top: 20px;
             margin-bottom: 20px;
             width: 700px;
-            border: 2px;
             border-radius: 20px;
             background-color: #666666;
+            padding-bottom: 20px;
 
          }
 
@@ -61,32 +61,66 @@
          {
             margin-left: auto;
             margin-right: auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
             color: lightgreen;
             background-color: rgb(39, 39, 39);
             text-align: left;
             width: 300px;
             text-align: center;
-            font-size:15pt;
-           /* max-height: 30pt; */
-            min-height: 30pt;
+            font-size:10pt;
+            max-height: 40pt;
             border-radius: 7px;
+            overflow-y: scroll;
+         }
+
+         #container
+         {
+            margin-left: auto;
+            margin-right: auto;            
+            height: 200px;
+            width: 300px;
+            margin-bottom: 20px;
+         }
+
+         .child
+         {
+            position:absolute;
+            width: 300px;
+         }
+         
+         .car
+         {
+            transition: opacity 0.3s linear;
          }
       </style>
    </head>
    <body>
       <div class="pane">
-         <div class="header"><img   style="vertical-align: middle; padding-right: 20px;" width="150px" src="key-green.png" />Digital Key</div>
+         <div class="header">
+            <img style="vertical-align: middle; padding-right: 20px;" width="150px" src="key-green.png" />
+            Digital Key
+         </div>
+   <div id="container">
+   <div class="child">   <img width="300px" class="car" id="toggleOff" style="margin-top: 30px" src="car-off-closed.png" />
+   </div>
+   <div class="child">   <img width="300px" class="car" id="toggleOn" style="margin-top: 30px" src="car-grey-closed.png" />
+   </div>
 
-         <img width="300px" style="margin-top: 30px" src="car-green.png" />
-         <div class="output">
-            <pre id="log"></pre>
-          </div>
+   </div>
+
+
+
          <form>
             <input type="button" onclick="bleConnect()"  value="Activate"><br/>
             <input type="button" onclick="bleDisconnect()"  value="Deactivate">
          </form>
-
+         <div class="output">
+            <pre id="log"></pre>
+          </div>
       </div> 
+
+
       <div class="pane">
          <div class="header"><img   style="vertical-align: middle; padding-right: 20px;" width="100px" src="backend-grey.png" />Backend</div>
          <form>
