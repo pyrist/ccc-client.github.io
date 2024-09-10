@@ -112,16 +112,21 @@ async function bleConnect() {
     let value = event.target.value.getInt8(0);
     console.log(value)
 
-    if (value > -50)
+    if (value > -45)
     {
       document.querySelector('#toggleOn').src = "car-green-open.png"
       document.querySelector('#toggleOff').src = "car-grey-closed.png"
 
     }
-    else if (value > -70)
+    else if (value > -55)
     {
       document.querySelector('#toggleOn').src = "car-orange-closed.png"
       document.querySelector('#toggleOff').src = "car-grey-closed.png"
+    }
+    else if (value > -95)
+    {
+      document.querySelector('#toggleOn').src = "car-red-closed.png"
+      document.querySelector('#toggleOff').src = "car-off-closed.png"
     }
     else
     {
