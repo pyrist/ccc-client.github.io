@@ -28,7 +28,7 @@ async function bleConnect() {
       {
         log('Requesting Bluetooth Device...');
         device = await navigator.bluetooth.requestDevice({
-                    filters: [{name: "vector-vh4110"}], "optionalServices": ["EF680100-1234-1234-1234-000000000000".toLowerCase()]});
+                    filters: [{"services": ["EF680100-1234-1234-1234-000000000000".toLowerCase()]}]});
       }
 
 
