@@ -1,9 +1,17 @@
-function startConnect(){
+function log() {
+    var line = Array.prototype.slice.call(arguments).map(function(argument) {
+      return typeof argument === 'string' ? argument : JSON.stringify(argument);
+    }).join(' ');
+    document.querySelector('#log').textContent = line + '\n' + document.querySelector('#log').textContent ;
+  }
+
+function startConnect()
+{
 
     clientID = "clientID - "+parseInt(Math.random() * 100);
 
-    host = document.getElementById("host").value;   
-    port = document.getElementById("port").value;  
+    host = "test.mosquitto.org";   
+    port = 8080;  
   
 
 
@@ -23,16 +31,18 @@ function startConnect(){
 
 
 function onConnect(){
-    topic =  "#";
-    client.subscribe(topic);
+    log("Connected to " + host + ":" + port)
+    topic = "10092004/4110/status"
+    log("Subscribing to " + topic)
+    client.subscribe("10092004/4110/status");
 }
 
 
 
 function onConnectionLost(responseObject){
-    document.getElementById("messages").innerHTML += "<span> ERROR: Connection is lost.</span><br>";
+    log("<span> ERROR: Connection is lost.</span><br>");
     if(responseObject !=0){
-        document.getElementById("messages").innerHTML += "<span> ERROR:"+ responseObject.errorMessage +"</span><br>";
+        log("ERROR:"+ responseObject.errorMessage);
     }
 }
 
@@ -43,16 +53,18 @@ function startDisconnect(){
 }
 
 function onMessageArrived(message){
-    console.log("OnMessageArrived: "+message.payloadString);
+    log("OnMessageArrived: "+message.payloadString);
 }
 
 function publishMessage(){
-msg = "abc123";
+    msg = "abc123";
 
-Message = new Paho.MQTT.Message(msg);
-Message.destinationName = "blub";
+    Message = new Paho.MQTT.Message(msg);
+    Message.destinationName = "blub";
 
-client.send(Message);
+    client.send(Message);
 
 
 }
+
+startConnect()

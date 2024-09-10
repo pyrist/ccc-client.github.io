@@ -35,7 +35,7 @@
             margin-right: auto;
             margin-top: 20px;
             margin-bottom: 20px;
-            width: 700px;
+            width: 95%;
             border-radius: 20px;
             background-color: #666666;
             padding-bottom: 20px;
@@ -66,10 +66,10 @@
             color: lightgreen;
             background-color: rgb(39, 39, 39);
             text-align: left;
-            width: 300px;
-            text-align: center;
+            width: 95%;
+            text-align: left;
             font-size:10pt;
-            max-height: 40pt;
+            height: 200px;
             border-radius: 7px;
             overflow-y: scroll;
          }
@@ -93,12 +93,23 @@
          {
             transition: opacity 0.3s linear;
          }
+
+         .label
+         {
+            font-size: 20pt;
+            color:#cccccc;
+            display: inline-block;
+            width:200px;
+            text-align: right;
+            border: solid 1px black;
+         }
+
       </style>
    </head>
    <body>
       <div class="pane">
          <div class="header">
-            <img style="vertical-align: middle; padding-right: 20px;" width="150px" src="key-green.png" />
+            <img style="vertical-align: middle; padding-right: 20px; opacity: 0.8; padding-top:10px;padding-bottom: 10px;" width="150px" src="key-green.png" />
             Digital Key
          </div>
    <div id="container">
@@ -115,9 +126,7 @@
             <input type="button" onclick="bleConnect()"  value="Activate"><br/>
             <input type="button" onclick="bleDisconnect()"  value="Deactivate">
          </form>
-         <div class="output">
-            <pre id="log"></pre>
-          </div>
+
       </div> 
 
 
@@ -125,8 +134,8 @@
          <div class="header"><img   style="vertical-align: middle; padding-right: 20px;" width="100px" src="backend-grey.png" />Backend</div>
          <form>
 
-            <input type="button" onclick="startFind()"  value="Find"><br/>
-            <input type="button"  onclick="startStatus()" value="Status"> <br>
+            <span class="label">Location</span><input type="text" id="location"/><br/>
+            <span class="label">Status</span><input type="text" id="status"/><br/>
             <input type="button" onclick="startFirmware()"  value="Firmware"><br/>
             <input type="button"  onclick="startPrepare()" value="Prepare"> <br>
          </form>
@@ -136,7 +145,9 @@
 
        </script>
        
-
+       <div class="output">
+         <pre id="log"></pre>
+       </div>
 
    </body>
 </html>
