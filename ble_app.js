@@ -48,7 +48,7 @@ async function bleConnect() {
       {
          log(x.name)
          console.log(x)
-         if (x.name == "vector-vh4110")
+         if (x.name == "vector-vh4110" || x.name == "VH4110")
          {
           device = x
           break;

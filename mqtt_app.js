@@ -11,7 +11,7 @@ function startConnect()
     clientID = "clientID - "+parseInt(Math.random() * 100);
 
     host = "test.mosquitto.org";   
-    port = 8080;  
+    port = 8081;  
   
 
 
@@ -32,9 +32,9 @@ function startConnect()
 
 function onConnect(){
     log("Connected to " + host + ":" + port)
-    topic = "10092004/4110/status"
+    topic = "10092024/4110/general_status"
     log("Subscribing to " + topic)
-    client.subscribe("10092004/4110/status");
+    client.subscribe(topic);
 }
 
 
