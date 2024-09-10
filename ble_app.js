@@ -47,11 +47,12 @@ async function bleConnect() {
       myCharacteristic.addEventListener('characteristicvaluechanged',
           handleNotifications);
     } catch(error) {
-      log('Argh! ' + error);
+      log(error);
     }
   }
   
-  async function onStopButtonClick() {
+  async function bleDisconnect() {
+
     if (myCharacteristic) {
       try {
         await myCharacteristic.stopNotifications();
@@ -62,6 +63,11 @@ async function bleConnect() {
         log('Argh! ' + error);
       }
     }
+    if (device)
+      {
+        device.gatt.disconnect();
+        log("Device disconnected")
+      }
   }
   
   function handleNotifications(event) {
