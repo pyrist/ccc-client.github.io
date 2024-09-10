@@ -5,25 +5,30 @@
     var line = Array.prototype.slice.call(arguments).map(function(argument) {
       return typeof argument === 'string' ? argument : JSON.stringify(argument);
     }).join(' ');
-    document.querySelector('#log').textContent = line + '\n';
+    document.querySelector('#log').textContent += line + '\n';
   }
 
 async function bleConnect() {
 
   
     try {
-      log('Requesting Bluetooth Device...');
-//      const device = await navigator.bluetooth.requestDevice({
-//          filters: [{name: "VH4110"}], "optionalServices": ["EF680100-1234-1234-1234-000000000000".toLowerCase()]});
       devices = await navigator.bluetooth.getDevices();
-      if (devices[0])
+      device = null;
+      for (x of devices)
       {
-         device = devices[0]
+         log(x.name)
+         console.log(x)
+         if (x.name == "vector-vh4110")
+         {
+          device = x
+          break;
+         }
       }
-      else
+      if (device == null)
       {
-         device = await navigator.bluetooth.requestDevice({
-                    filters: [{name: "VH4110"}], "optionalServices": ["EF680100-1234-1234-1234-000000000000".toLowerCase()]});
+        log('Requesting Bluetooth Device...');
+        device = await navigator.bluetooth.requestDevice({
+                    filters: [{name: "vector-vh4110"}], "optionalServices": ["EF680100-1234-1234-1234-000000000000".toLowerCase()]});
       }
 
 
