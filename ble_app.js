@@ -13,7 +13,6 @@ var toggleCarState;
 
 function toggleCar()
 {
-    console.log(toggleCarState)
     if (toggleCarState)
     {
       document.querySelector('#toggleOn').style.opacity = 1.0
@@ -90,7 +89,7 @@ async function bleConnect() {
     document.querySelector('#toggleOff').src = "car-off-closed.png"
     document.querySelector('#toggleOn').style.opacity = 1.0
     document.querySelector('#toggleOff').style.opacity = 0.0
-    
+
     if (myCharacteristic) {
       try {
         await myCharacteristic.stopNotifications();
@@ -111,14 +110,15 @@ async function bleConnect() {
   function handleNotifications(event) {
     
     let value = event.target.value.getInt8(0);
+    console.log(value)
 
-    if (value > -30)
+    if (value > -50)
     {
       document.querySelector('#toggleOn').src = "car-green-open.png"
       document.querySelector('#toggleOff').src = "car-grey-closed.png"
 
     }
-    else if (value > -50)
+    else if (value > -70)
     {
       document.querySelector('#toggleOn').src = "car-orange-closed.png"
       document.querySelector('#toggleOff').src = "car-grey-closed.png"
@@ -128,6 +128,4 @@ async function bleConnect() {
       document.querySelector('#toggleOn').src = "car-grey-closed.png"
       document.querySelector('#toggleOff').src = "car-off-closed.png"
     }
-    var car_toggle_on = "car-grey-closed.png";
-var car_toggle_off = "car-off-closed.png";;
   }
