@@ -44,7 +44,6 @@ async function bleConnect() {
          if (x.name == "vector-vh4110" || x.name == "VH4110")
          {
           device = x
-          break;
          }
       }
       if (device == null)
