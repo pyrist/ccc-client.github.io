@@ -1,11 +1,3 @@
-function log() {
-    var line = Array.prototype.slice.call(arguments).map(function(argument) {
-      return typeof argument === 'string' ? argument : JSON.stringify(argument);
-    }).join(' ');
-    obj = document.querySelector('#log')
-    log.textContent += line + '\n';
-    obj.scrollTop = objDiv.scrollHeight;
-  }
 
 function startConnect()
 {
@@ -16,8 +8,8 @@ function startConnect()
     port = 8081;  
   
 
-  //  client = new Paho.MQTT.Client("wss://test.mosquitto.org:8081/",clientID);
-    client = new Paho.MQTT.Client("wss://mqtt.eclipseprojects.io:443/mqtt",clientID);
+    client = new Paho.MQTT.Client("wss://test.mosquitto.org:8081/",clientID);
+    //client = new Paho.MQTT.Client("wss://mqtt.eclipseprojects.io:443/mqtt",clientID);
 
     client.onConnectionLost = onConnectionLost;
     client.onMessageArrived = onMessageArrived;
@@ -34,9 +26,10 @@ function startConnect()
 
 function onConnect(){
     log("Connected to " + host + ":" + port)
-//    topic = "10092024/4110/general_status"
-    topic = "#"
-
+    topic = "10092024/4110/general_status"
+    log("Subscribing to " + topic)
+    client.subscribe(topic);
+    topic = "10092024/4110/location"
     log("Subscribing to " + topic)
     client.subscribe(topic);
 }
@@ -57,7 +50,26 @@ function startDisconnect(){
 }
 
 function onMessageArrived(message){
-    log("OnMessageArrived: "+message.payloadString);
+    log("OnMessageArrived: " + message.destinationName + " " + message.payloadString);
+    obj = JSON.parse(message.payloadString);
+    if (message.destinationName == "10092024/4110/general_status")
+    {
+    }
+    else if (message.destinationName == "10092024/4110/location")
+    {
+        map.setCenter(new OpenLayers.LonLat(obj.latidude, obj.longitude) // Center of the map
+        .transform(
+          new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+          new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
+        ), 12 // Zoom level
+      );
+
+    }
+    else
+    {
+        log("Unknown message");
+    }
+    
 }
 
 function publishMessage(){
