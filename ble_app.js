@@ -28,6 +28,7 @@ var device;
 var server;
 var myCharacteristic;
 var toggleCarTimer
+var device = null;
 
 async function bleConnect() {
 
@@ -35,8 +36,8 @@ async function bleConnect() {
     toggleCarTimer = setTimeout(toggleCar, 1000);
   
     try {
+      /*
       devices = await navigator.bluetooth.getDevices();
-      device = null;
       for (x of devices)
       {
          log(x.name)
@@ -46,6 +47,7 @@ async function bleConnect() {
           device = x
          }
       }
+      */
       if (device == null)
       {
         log('Requesting Bluetooth Device...');
@@ -69,7 +71,7 @@ async function bleConnect() {
       myCharacteristic.addEventListener('characteristicvaluechanged',
           handleNotifications);
     } catch (error) {
-      console.log(error)
+      device = null;
       log("Exception" + error.message);
     }
   }
