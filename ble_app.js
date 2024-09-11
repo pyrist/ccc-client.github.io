@@ -70,7 +70,7 @@ async function bleConnect() {
           handleNotifications);
     } catch (error) {
       console.log(error)
-      log(error.message);
+      log("Exception" + error.message);
     }
   }
   
