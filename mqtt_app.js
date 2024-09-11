@@ -2,7 +2,9 @@ function log() {
     var line = Array.prototype.slice.call(arguments).map(function(argument) {
       return typeof argument === 'string' ? argument : JSON.stringify(argument);
     }).join(' ');
-    document.querySelector('#log').textContent = line + '\n' + document.querySelector('#log').textContent ;
+    obj = document.querySelector('#log')
+    log.textContent += line + '\n';
+    obj.scrollTop = objDiv.scrollHeight;
   }
 
 function startConnect()
@@ -14,8 +16,8 @@ function startConnect()
     port = 8081;  
   
 
-
-    client = new Paho.MQTT.Client("wss://test.mosquitto.org:8081/",clientID);
+  //  client = new Paho.MQTT.Client("wss://test.mosquitto.org:8081/",clientID);
+    client = new Paho.MQTT.Client("wss://mqtt.eclipseprojects.io:443/mqtt",clientID);
 
     client.onConnectionLost = onConnectionLost;
     client.onMessageArrived = onMessageArrived;
@@ -32,7 +34,7 @@ function startConnect()
 
 function onConnect(){
     log("Connected to " + host + ":" + port)
-    topic = "10092024/4110/general_status"
+//    topic = "10092024/4110/general_status"
     topic = "#"
 
     log("Subscribing to " + topic)
