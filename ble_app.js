@@ -65,12 +65,12 @@ async function bleConnect() {
   
       await myCharacteristic.startNotifications();
   
-      log('> Notifications started');
+      log('Notifications started');
       myCharacteristic.addEventListener('characteristicvaluechanged',
           handleNotifications);
     } catch (error) {
       console.log(error)
-      log(error);
+      log(error.message);
     }
   }
   
