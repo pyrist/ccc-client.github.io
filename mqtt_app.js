@@ -37,7 +37,7 @@ function onConnect(){
 
 
 function onConnectionLost(responseObject){
-    log("<span> ERROR: Connection is lost.</span><br>");
+    log("Connection is lost");
     if(responseObject !=0){
         log("ERROR:"+ responseObject.errorMessage);
     }
@@ -72,11 +72,10 @@ function onMessageArrived(message){
     
 }
 
-function publishMessage(){
-    msg = "abc123";
+function publishMessage(msg){
 
     Message = new Paho.MQTT.Message(msg);
-    Message.destinationName = "blub";
+    Message.destinationName = "10092024/4110/location";
 
     client.send(Message);
 
