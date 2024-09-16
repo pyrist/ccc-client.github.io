@@ -52,7 +52,7 @@ async function bleConnect() {
       {
         log('Requesting Bluetooth Device...');
         device = await navigator.bluetooth.requestDevice({
-                    filters: [{services: [0xff05]}],
+                    filters: [{services: [0xfff5]}],
                     optionalServices: ["EF680100-1234-1234-1234-000000000000".toLowerCase()]})
 
       }

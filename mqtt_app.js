@@ -41,6 +41,7 @@ function onConnectionLost(responseObject){
     if(responseObject !=0){
         log("ERROR:"+ responseObject.errorMessage);
     }
+    startConnect();
 }
 
 
@@ -54,15 +55,27 @@ function onMessageArrived(message){
     obj = JSON.parse(message.payloadString);
     if (message.destinationName == "10092024/4110/general_status")
     {
-    }
+        document.querySelector('#state').textContent = obj.status;
+        document.querySelector('#state').style.color = "red";
+        document.querySelector('#locked').textContent = obj.locked;
+        document.querySelector('#locked').style.color = "red";
+        document.querySelector('#battery').textContent = obj.battery;
+        document.querySelector('#battery').style.color = "red";
+        document.querySelector('#fuel').textContent = obj.fuel;
+        document.querySelector('#fuel').style.color = "red";
+        document.querySelector('#temperature').textContent = obj.temperature;
+        document.querySelector('#temperature').style.color = "red";
+        setTimeout(function() {
+            document.querySelector('#state').style.color = "black";
+            document.querySelector('#locked').style.color = "black";
+            document.querySelector('#battery').style.color = "black";
+            document.querySelector('#fuel').style.color = "black";
+            document.querySelector('#temperature').style.color = "black";
+          }, 2000);
+        }
     else if (message.destinationName == "10092024/4110/location")
     {
-        map.setCenter(new OpenLayers.LonLat(obj.latidude, obj.longitude) // Center of the map
-        .transform(
-          new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-          new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
-        ), 12 // Zoom level
-      );
+//
 
     }
     else
@@ -71,6 +84,7 @@ function onMessageArrived(message){
     }
     
 }
+
 
 function publishMessage(msg){
 
