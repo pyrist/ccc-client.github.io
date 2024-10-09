@@ -1,0 +1,40 @@
+@font-face {
+    font-family: MarkForVector;
+    src: url("../fonts/MarkProforVector.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: MarkForVector;
+    src: url("../fonts/MarkProforVector-Bold.ttf");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: MarkForVector;
+    src: url("../fonts/MarkProforVector-BoldItalic.ttf");
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: MarkForVector;
+    src: url("../fonts/MarkProforVector-Italic.ttf");
+    font-weight: normal;
+    font-style: italic;
+}
+
+:root {
+    --vector-red: #b70031;
+    --vector-lighter-grey: #f4f5f6;
+    --vector-light-grey: #eaeced;
+    --vector-medium-grey: #848b8e;
+    --vector-dark-grey: #565c5e;
+    --vector-darker-grey: #3a3e3f;
+}
+
+* {
+    font-family: MarkForVector, Helvetica, Roboto, Arial, sans-serif;
+}
