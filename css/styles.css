@@ -453,9 +453,9 @@ header {
   }
 }
 
-@media (max-width: 600px) { 
+@media (max-width: 700px) { 
   .car {
-    width: 95%;
+    width: 80%;
   }
 
   .header-text {
@@ -464,6 +464,7 @@ header {
 
   .logo {
     height: 75px;
+    width: 170px;
   }
 
   .header-text>.header {
@@ -475,7 +476,11 @@ header {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
+  .car {
+    width: 95%;
+  }
+
   .car-detail-container {
     min-width: 0px;
     width: 60vw;
@@ -492,5 +497,9 @@ header {
 
   #basicMap {
     display: none;
+  }
+
+  .header-text>.header {
+    font-size: 22px;
   }
 }
