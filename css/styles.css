@@ -15,14 +15,14 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
   width: 95%;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .header {
   font-size: 30pt;
   color: var(--vector-darker-grey);
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .subheader {
@@ -30,7 +30,7 @@ body {
   height: 40px;
   padding-top: 10px;
   color: white;
-  background-color: var(--vector-red);
+  background-color: var(--vector-medium-grey);
 }
 
 #car-container {
@@ -64,7 +64,7 @@ body {
 }
 
 .car {
-  width: 50%;
+  width: 70%;
   height: auto;
   max-height: 900px;
   min-width: 400px;
@@ -83,14 +83,14 @@ body {
   font-size: 14pt;
   text-align: right;
   margin: 5px;
-  color: black;
+  color: var(--vector-darker-grey);
   font-weight: bold;
 }
 
 .box {
   display: inline-block;
   width: 250px;
-  height: 345px;
+  height: 305px;
   background-color: var(--vector-light-grey);
   margin: 10px;
   vertical-align: top;
@@ -115,7 +115,7 @@ body {
   grid-column: 1 / 5;
   display: flex;
   justify-content: space-between;
-  padding: 12px;
+  padding: 8px;
 }
 
 .row-border{
@@ -291,7 +291,7 @@ header {
 
 #basicMap {
   width: 100%;
-  height: 345px;
+  height: 305px;
   margin: 0;
   z-index: 1;
 }

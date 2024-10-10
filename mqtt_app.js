@@ -48,21 +48,21 @@ function onMessageArrived(message) {
     obj = JSON.parse(message.payloadString);
     if (message.destinationName == "10092024/4110/general_status") {
         document.querySelector('#state').textContent = obj.status;
-        document.querySelector('#state').style.color = "red";
+        document.querySelector('#state').style.color = "var(--vector-red)";
         document.querySelector('#locked').textContent = obj.locked;
-        document.querySelector('#locked').style.color = "red";
+        document.querySelector('#locked').style.color = "var(--vector-red)";
         document.querySelector('#battery').textContent = obj.battery;
-        document.querySelector('#battery').style.color = "red";
+        document.querySelector('#battery').style.color = "var(--vector-red)";
         document.querySelector('#fuel').textContent = obj.fuel;
-        document.querySelector('#fuel').style.color = "red";
+        document.querySelector('#fuel').style.color = "var(--vector-red)";
         document.querySelector('#temperature').textContent = obj.temperature;
-        document.querySelector('#temperature').style.color = "red";
+        document.querySelector('#temperature').style.color = "var(--vector-red)";
         setTimeout(function () {
-            document.querySelector('#state').style.color = "black";
-            document.querySelector('#locked').style.color = "black";
-            document.querySelector('#battery').style.color = "black";
-            document.querySelector('#fuel').style.color = "black";
-            document.querySelector('#temperature').style.color = "black";
+            document.querySelector('#state').style.color = "var(--vector--darker-grey)";
+            document.querySelector('#locked').style.color = "var(--vector--darker-grey)";
+            document.querySelector('#battery').style.color = "var(--vector--darker-grey)";
+            document.querySelector('#fuel').style.color = "var(--vector--darker-grey)";
+            document.querySelector('#temperature').style.color = "var(--vector--darker-grey)";
         }, 2000);
     }
     else if (message.destinationName == "10092024/4110/location") {
