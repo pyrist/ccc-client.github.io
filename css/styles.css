@@ -66,9 +66,21 @@ body {
 .car {
   width: 70%;
   height: auto;
-  max-height: 900px;
-  min-width: 400px;
+  max-height: 45vh;
+  min-width: 1em;
   transition: opacity 0.3s linear;
+}
+
+@media (max-width: 500px) { 
+  .car {
+    width: 95%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .header {
+    font-size: 30px;
+  }
 }
 
 .label {
