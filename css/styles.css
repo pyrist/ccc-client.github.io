@@ -71,18 +71,6 @@ body {
   transition: opacity 0.3s linear;
 }
 
-@media (max-width: 500px) { 
-  .car {
-    width: 95%;
-  }
-}
-
-@media (max-width: 1000px) {
-  .header {
-    font-size: 30px;
-  }
-}
-
 .label {
   font-size: 14pt;
   display: inline-block;
@@ -130,7 +118,7 @@ body {
   padding: 8px;
 }
 
-.row-border{
+.row-border {
   border-top: 1px solid var(--vector-light-grey);
   grid-column: 1 / 5;
 }
@@ -211,6 +199,8 @@ footer>a {
   display: inline-block;
   width: 120px;
   height: 59px;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
 .switch input {
@@ -317,7 +307,6 @@ header {
 
 .refresh-icon {
   height: 2em;
-  padding: .25em;
   width: 2em;
 
   &:before,
@@ -364,8 +353,8 @@ header {
 
 .map-button {
   z-index: 2;
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -388,6 +377,12 @@ header {
   animation: rotation 1s linear infinite;
 }
 
+.map-box {
+  width: 33vw; 
+  max-width: 400px; 
+  min-width: 250px;
+}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
@@ -395,5 +390,74 @@ header {
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 500px) { 
+  .car {
+    width: 95%;
+  }
+  .header-text>.header {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .header {
+    font-size: 30px;
+  }
+  .label {
+    font-size: 12pt;
+  }
+  
+  .value {
+    font-size: 12pt;
+  }
+
+  .subheader {
+    font-size: 16pt;
+  }
+
+  .car-detail-container {
+    max-width: 250px;
+    width: 33vw;
+    min-width: 200px;
+    margin: 10px;
+  }
+
+  .map-box {
+    max-width: 250px;
+    min-width: 200px;
+    height: 265px;
+  }
+  
+  .car-detail {
+    padding: 6px;
+  }
+
+  #basicMap {
+    height: 265px;
+  }
+
+  .switch {
+    width: 82px;
+    height: 40px;
+  }
+  
+  .slider:before {
+    height: 28px;
+    width: 28px;
+    left: 6px;
+    bottom: 6px;
+  }
+
+  input:checked+.slider:before {
+    -webkit-transform: translateX(42px);
+    -ms-transform: translateX(42px);
+    transform: translateX(42px);
+  }
+
+  .digital-key-form > img {
+    width: 82px;
   }
 }
