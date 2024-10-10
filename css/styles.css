@@ -393,15 +393,6 @@ header {
   }
 }
 
-@media (max-width: 500px) { 
-  .car {
-    width: 95%;
-  }
-  .header-text>.header {
-    font-size: 25px;
-  }
-}
-
 @media (max-width: 1000px) {
   .header {
     font-size: 30px;
@@ -459,5 +450,47 @@ header {
 
   .digital-key-form > img {
     width: 82px;
+  }
+}
+
+@media (max-width: 600px) { 
+  .car {
+    width: 95%;
+  }
+
+  .header-text {
+    height: 75px;
+  }
+
+  .logo {
+    height: 75px;
+  }
+
+  .header-text>.header {
+    font-size: 25px;
+  }
+
+  .logo-wrapper>object {
+    width: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .car-detail-container {
+    min-width: 0px;
+    width: 60vw;
+    margin: 10px;
+  }
+
+  .map-box {
+    display: none;
+  }
+  
+  .car-detail {
+    padding: 6px;
+  }
+
+  #basicMap {
+    display: none;
   }
 }
