@@ -1,11 +1,11 @@
 function startConnect() {
     clientID = "clientID - " + parseInt(Math.random() * 100);
 
-    host = "test.mosquitto.org";
-    port = 8081;
+    host = "localhost";
+    port = 9001;
 
 
-    client = new Paho.MQTT.Client("wss://test.mosquitto.org:8081/", clientID);
+    client = new Paho.MQTT.Client("ws://localhost:9001/", clientID);
 
     client.onConnectionLost = onConnectionLost;
     client.onMessageArrived = onMessageArrived;
@@ -58,11 +58,11 @@ function onMessageArrived(message) {
         document.querySelector('#temperature').textContent = obj.temperature;
         document.querySelector('#temperature').style.color = "var(--vector-red)";
         setTimeout(function () {
-            document.querySelector('#state').style.color = "var(--vector--darker-grey)";
-            document.querySelector('#locked').style.color = "var(--vector--darker-grey)";
-            document.querySelector('#battery').style.color = "var(--vector--darker-grey)";
-            document.querySelector('#fuel').style.color = "var(--vector--darker-grey)";
-            document.querySelector('#temperature').style.color = "var(--vector--darker-grey)";
+            document.querySelector('#state').style.color = "var(--vector-darker-grey)";
+            document.querySelector('#locked').style.color = "var(--vector-darker-grey)";
+            document.querySelector('#battery').style.color = "var(--vector-darker-grey)";
+            document.querySelector('#fuel').style.color = "var(--vector-darker-grey)";
+            document.querySelector('#temperature').style.color = "var(--vector-darker-grey)";
         }, 2000);
     }
     else if (message.destinationName == "10092024/4110/location") {

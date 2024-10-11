@@ -1,0 +1,18 @@
+version: '3'
+services:
+    mosquitto:
+        image: "eclipse-mosquitto:2.0.18"
+        volumes:
+          - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:rw
+          - ./acl.conf:/mosquitto/config/acl.conf
+          - ./password.file:/mosquitto/config/password.file
+        container_name: vh4110-demo-mosquitto
+        restart: unless-stopped
+        ports:
+          - 9001:9001
+    nginx:
+        image: nginx:1-alpine
+        ports:
+          - 8089:80
+        volumes:
+          - ./website/:/usr/share/nginx/html

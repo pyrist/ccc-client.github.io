@@ -51,6 +51,7 @@ async function bleConnect() {
        }
     }
     */
+
     if (device == null) {
       log('Requesting Bluetooth Device...');
       device = await navigator.bluetooth.requestDevice({
@@ -73,6 +74,12 @@ async function bleConnect() {
     log('Notifications started');
     myCharacteristic.addEventListener('characteristicvaluechanged',
       handleNotifications);
+
+      document.querySelector('#state').style.color = "var(--vector-red)";
+    document.querySelector('#locked').style.color = "var(--vector-red)";
+    document.querySelector('#battery').style.color = "var(--vector-red)";
+    document.querySelector('#fuel').style.color = "var(--vector-red)";
+    document.querySelector('#temperature').style.color = "var(--vector-red)";
   } catch (error) {
     device = null;
     log("Exception" + error.message);
@@ -87,6 +94,14 @@ async function bleDisconnect() {
   document.querySelector('#toggleOff').src = "images/car-off-closed.png"
   document.querySelector('#toggleOn').style.opacity = 1.0
   document.querySelector('#toggleOff').style.opacity = 0.0
+
+  document.querySelector('#state').style.color = "var(--vector-darker-grey)";
+  document.querySelector('#locked').style.color = "var(--vector-darker-grey)";
+  document.querySelector('#battery').style.color = "var(--vector-darker-grey)";
+  document.querySelector('#fuel').style.color = "var(--vector-darker-grey)";
+  document.querySelector('#temperature').style.color = "var(--vector-darker-grey)";
+
+  document.querySelector('#locked').textContent = "True";
 
   if (myCharacteristic) {
     try {
@@ -113,18 +128,21 @@ function handleNotifications(event) {
   if (value > -45) {
     document.querySelector('#toggleOn').src = "images/car-green-open.png"
     document.querySelector('#toggleOff').src = "images/car-grey-closed.png"
-
+    document.querySelector('#locked').textContent = "False";
   }
   else if (value > -55) {
     document.querySelector('#toggleOn').src = "images/car-orange-closed.png"
     document.querySelector('#toggleOff').src = "images/car-grey-closed.png"
+    document.querySelector('#locked').textContent = "True";
   }
   else if (value > -95) {
     document.querySelector('#toggleOn').src = "images/car-red-closed.png"
-    document.querySelector('#toggleOff').src = "images/car-off-closed.png"
+    document.querySelector('#toggleOff').src = "images/car-grey-closed.png"
+    document.querySelector('#locked').textContent = "True";
   }
   else {
     document.querySelector('#toggleOn').src = "images/car-grey-closed.png"
-    document.querySelector('#toggleOff').src = "images/car-off-closed.png"
+    document.querySelector('#toggleOff').src = "images/car-grey-closed.png"
+    document.querySelector('#locked').textContent = "True";
   }
 }
