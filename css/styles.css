@@ -230,8 +230,8 @@ footer>a {
   left: 8px;
   bottom: 8px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: .4s ease-in-out;
+  transition: .4s ease-in-out;
   border-radius: 5px;
 }
 
