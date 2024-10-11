@@ -15,4 +15,6 @@ services:
         ports:
           - 8089:80
         volumes:
-          - ./website/:/usr/share/nginx/html
+          - ./docs/:/usr/share/nginx/html
+        depends_on:
+          - vh4110-demo-mosquitto
