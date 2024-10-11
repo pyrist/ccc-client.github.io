@@ -181,7 +181,7 @@ footer {
   display: block;
   font-family: MarkForVector;
   line-height: 35px;
-  flex: 1;
+  margin-top: auto;
 }
 
 a {
@@ -219,6 +219,7 @@ footer>a {
   background-color: var(--vector-medium-grey);
   -webkit-transition: .4s;
   transition: .4s;
+  border-radius: 8px;
 }
 
 .slider:before {
@@ -231,6 +232,7 @@ footer>a {
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
+  border-radius: 5px;
 }
 
 input:checked+.slider {
